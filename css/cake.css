@@ -1,0 +1,460 @@
+/* Pink variable definition for reference: #e77572 */
+        
+@import url(https://fonts.googleapis.com/css?family=Damion);
+        
+* {
+    box-sizing: border-box;
+    font-weight: normal;
+}
+
+body {
+    font-family: 'Damion', cursive;
+    background: rgb(251,239,236);
+    background: -moz-radial-gradient(center, ellipse cover, rgba(251,239,236,1) 0%, rgba(218,180,180,1) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(251,239,236,1) 0%,rgba(218,180,180,1) 100%);
+    background: radial-gradient(ellipse at center, rgba(251,239,236,1) 0%,rgba(218,180,180,1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    overflow-x: hidden;
+    padding: 10px; 
+}
+
+.birthday {
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+/* Styles for the 'add' button */
+.birthday .add {
+    margin-top: 40px;
+    clear: both;
+    font-family: 'Damion', cursive;
+    background: transparent;
+    border: 2px solid #e77572;
+    color: #e77572;
+    font-size: 22px;
+    padding: 14px 28px;
+    border-radius: 40px;
+    transition: all .23s;
+    outline: none;
+    cursor: pointer;
+}
+.birthday .add:hover {
+    background: #e77572;
+    color: white;
+}
+
+/* Modal Styles */
+.birthday_inner__modal {
+    width: 100%;
+    max-width: 500px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: all .4s;
+    margin: auto;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    background: white;
+    border-radius: 20px;
+    z-index: 2;
+    padding: 40px 40px 100px 40px;
+    box-shadow: 0px 3px 10px 0px #E5B4B2;
+}
+.birthday_inner__modal .modal_image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-60%);
+}
+.birthday_inner__modal .modal_image img {
+    width: 100px;
+}
+.birthday_inner__modal h1 {
+    color: #e77572;
+    margin: 0;
+}
+.birthday_inner__modal p {
+    font-family: 'georgia';
+    font-size: 13px;
+    color: #b9918e;
+}
+.birthday_inner__modal button {
+    background: #e77572;
+    color: white;
+    outline: none;
+    padding: 20px;
+    border: none;
+    width: 100%;
+    font-size: 20px;
+    font-family: 'Damion', cursive;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0px;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    cursor: pointer;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.birthday_inner__modal button:hover {
+    background: #d86c69; 
+}
+
+/* Stage Styling */
+.birthday_inner__stage {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    max-width: 500px;
+    padding: 0 20px;
+}
+.birthday_inner__stage.stage1 {
+    display: block;
+}
+.birthday_inner__stage h1 {
+    color: #e77572;
+    margin: 0;
+}
+.birthday_inner__stage h2 {
+    font-family: 'georgia';
+    font-size: 12px;
+    color: #b9918e;
+    line-height: 18px;
+    margin: 0 0 10px 0; 
+}
+
+/* Stage 2 - Mixing */
+.birthday_inner__stage .mix {
+    margin: 60px 0px 10px 0px; 
+    position: relative;
+}
+.birthday_inner__stage .mix_bowl img {
+    width: 100%;
+    max-width: 300px;
+}
+.birthday_inner__stage .mix_spoon {
+    position: absolute;
+    top: -37px;
+    left: 50%;
+    transform: translateX(-10px);
+}
+.birthday_inner__stage .mix_spoon img {
+    position: relative;
+    left: 20px;
+    transform: rotate(0deg) translateX(15px) translateY(3px) rotate(0deg) scale(1);
+}
+.birthday_inner__stage .mix_spoon .move {
+    animation: mix 1s 0s linear;
+}
+
+
+/* Stage 1 - Intro */
+.birthday_inner__stage img.intro {
+    width: 300px;
+    transform: scale(0);
+    animation: bounce .6s 1s forwards, moveup .6s 2s forwards;
+    position: relative;
+    top: 0px;
+}
+
+/* Stage 3 - Baking */
+.birthday_inner__stage .oven {
+    margin-top: 30px; 
+    margin-bottom: -40px;
+}
+.birthday_inner__stage .oven img {
+    width: 290px;
+    position: relative;
+    left: -10px;
+}
+.birthday_inner__stage .tin {
+    cursor: grab;
+}
+.birthday_inner__stage .tin img {
+    width: 90px;
+}
+
+/* Stage 4 - Cake Building */
+.birthday_inner__stage .candle {
+    position: relative;
+    opacity: 0;
+    animation: candle 1s 1.3s forwards;
+    top: 10px;
+    z-index: 10;
+}
+.birthday_inner__stage .candle img {
+    width: 10px;
+}
+
+.birthday_inner__stage .startagain {
+    position: absolute;
+    right: 0;
+    top: 350px;
+    font-size: 24px;
+    color: #e77572;
+    cursor: pointer;
+}
+@media (max-width: 500px) {
+    .birthday_inner__stage .startagain {
+        position: static;
+        margin-top: 10px;
+        display: block;
+    }
+}
+        
+.birthday_inner__stage .cakemake {
+    margin-top: 100px; 
+    clear: both;
+    text-align: center;
+    min-height: 250px;
+}
+
+/* Cake layer styles */
+.cakemake .base,
+.cakemake .sponge {
+    height: 40px;
+    margin: 0 auto;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-bottom: -10px;
+    position: relative;
+    background-image: -webkit-repeating-linear-gradient(-45deg, transparent, transparent 5px, rgba(255,255,255,.2) 5px, rgba(255,255,255,.2) 10px);
+}
+.cakemake .base div,
+.cakemake .sponge div {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    background: Red; /* Default, will be overridden by specific sponge classes */
+    border-radius: 100px;
+    top: -5px;
+    z-index: 4;
+    margin-left: 6px;
+}
+/* Decoration dots positioning */
+.cakemake .base div:nth-of-type(1), .cakemake .sponge div:nth-of-type(1) { left: 0%; }
+.cakemake .base div:nth-of-type(2), .cakemake .sponge div:nth-of-type(2) { left: 20%; }
+.cakemake .base div:nth-of-type(3), .cakemake .sponge div:nth-of-type(3) { left: 40%; }
+.cakemake .base div:nth-of-type(4), .cakemake .sponge div:nth-of-type(4) { left: 60%; }
+.cakemake .base div:nth-of-type(5), .cakemake .sponge div:nth-of-type(5) { left: 80%; }
+
+/* Filling styles */
+.cakemake .filling {
+    height: 10px;
+    margin: 0 auto;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 1;
+    top: 9px;
+}
+.cakemake .filling div {
+    display: block;
+    width: 12.5%;
+    float: left;
+    height: 16px;
+    background: black; /* Default, will be overridden by specific filling classes */
+    border-radius: 100%;
+}
+
+/* Specific cake layer colors */
+.cakemake .base { width: 200px; background-color: #ffd296; } /* Base has vanilla-like color */
+
+/* Sponge item colors */
+.cakemake .sponge-vanilla { background-color: #ffd296; }
+.cakemake .sponge-vanilla div { background: #CAA068; } /* Dots for vanilla */
+.cakemake .sponge-strawberry { background-color: #ff99a3; }
+.cakemake .sponge-strawberry div { background: #E27983; } /* Dots for strawberry */
+.cakemake .sponge-fruit { background-color: #d5ccb2; }
+.cakemake .sponge-fruit div { background: #A9A088; } /* Dots for fruit */
+
+/* Filling item colors */
+.cakemake .filling-jam { background: #e75656; }
+.cakemake .filling-jam div { background: #e75656; } 
+.cakemake .filling-cream { background: #fff; }
+.cakemake .filling-cream div { background: #fff; }
+.cakemake .filling-choc { background: #9f3d28; }
+.cakemake .filling-choc div { background: #9f3d28; }
+.cakemake .filling-lemon { background: #e8e086; }
+.cakemake .filling-lemon div { background: #e8e086; }
+
+
+/* Options Panel - Layout Fixes (Updated for better item arrangement) */
+.birthday_inner__stage .options {
+    position: relative;
+    margin-left: 0; 
+    margin-bottom: 20px; 
+    display: flex; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    width: 100%; 
+}
+
+.birthday_inner__stage .options .sponges,
+.birthday_inner__stage .options .fillings {
+    /* Use flex on the inner containers to manage item flow */
+    position: relative;
+    text-align: left;
+    min-width: 200px;
+    padding: 15px; 
+    border: 1px solid rgba(220, 150, 150, 0.2);
+    border-radius: 10px;
+    margin: 5px 0; 
+    flex-grow: 1; 
+    max-width: 220px;
+    
+    /* NEW: Use flexbox to arrange the internal items */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px; /* Space between the item blocks */
+}
+@media (max-width: 480px) { 
+    .birthday_inner__stage .options .sponges,
+    .birthday_inner__stage .options .fillings {
+        max-width: 90%; 
+    }
+}
+
+
+.birthday_inner__stage .options .sponges h3,
+.birthday_inner__stage .options .fillings h3 {
+    color: #a25a58;
+    font-size: 20px;
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle; 
+}
+.birthday_inner__stage .options .sponges h5,
+.birthday_inner__stage .options .fillings h5 {
+    margin: 0;
+    color: #e77572;
+    position: absolute;
+    top: 15px; 
+    right: 15px; 
+    font-size: 20px;
+}
+.birthday_inner__stage .options .item {
+    /* NEW: Remove float and rely on parent flex */
+    float: none; 
+    margin: 0; 
+    text-align: center;
+    width: auto; 
+    /* The individual item unit */
+}
+
+.birthday_inner__stage .options .item_inner {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: all .12s;
+}
+/* Item_inner specific colors (must be outside the general .item_inner block) */
+.birthday_inner__stage .options .item_inner.vanilla { background: #ffd296; }
+.birthday_inner__stage .options .item_inner.strawberry { background: #ff99a3; }
+.birthday_inner__stage .options .item_inner.fruit { background: #d5ccb2; }
+.birthday_inner__stage .options .item_inner.jam { background: #e75656; }
+.birthday_inner__stage .options .item_inner.cream { background: #fff; }
+.birthday_inner__stage .options .item_inner.choc { background: #9f3d28; }
+.birthday_inner__stage .options .item_inner.lemon { background: #e8e086; }
+
+
+.birthday_inner__stage .options .item_inner:hover {
+    border: 3px solid white;
+    box-shadow: 0 0 5px rgba(231, 117, 114, 0.8);
+}
+.birthday_inner__stage .options h4 {
+    margin: 0;
+    color: #e77572;
+    font-size: 16px;
+}
+
+
+/* General Button Style */
+.birthday_inner__stage button {
+    clear: both;
+    font-family: 'Damion', cursive;
+    background: transparent;
+    border: 2px solid #e77572;
+    color: #e77572;
+    font-size: 22px;
+    padding: 14px 28px;
+    border-radius: 40px;
+    transition: all .23s;
+    outline: none;
+    cursor: pointer;
+    margin-top: 10px; 
+}
+.birthday_inner__stage button:hover {
+    background: #e77572;
+    color: white;
+}
+
+/* Specific Button Overrides */
+.birthday_inner__stage .start {
+    margin-top: 30px;
+    animation: in .8s 2.9s forwards;
+    position: relative;
+    top: -20px;
+    opacity: 0;
+}
+.sa {
+    margin-top: 70px;
+    display: none;
+}
+
+/* Final Message Styling */
+.birthday_inner__stage .final-message {
+    font-size: 38px;
+    color: #e77572;
+    line-height: 1.2;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    display: block; 
+}
+
+
+/* Keyframe Animations */
+@keyframes bounce {
+    0% { transform: scale(0); }
+    25% { transform: scale(1.06); }
+    50% { transform: scale(.965); }
+    75% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+@keyframes in {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+@keyframes moveup {
+    from { top: 0 }
+    to { top: -30px }
+}
+@keyframes mix {
+    0% { transform: translateX(0px); }
+    50% { transform: translateX(28px); }
+    100% { transform: translateX(0px); }
+}
+@keyframes candle {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}

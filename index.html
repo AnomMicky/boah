@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Secret Gate of Hearts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffe4e6; /* Soft Rose Background (pink-100) */
+            transition: background-color 0.5s;
+        }
+        #quiz-container {
+            font-family: 'Inter', sans-serif;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif; /* Elegant font for the title */
+        }
+        /* Custom styling for the input focus */
+        #answerInput:focus {
+            border-color: #e11d48; /* Deep Rose Focus */
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.5); 
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div id="quiz-container" class="w-full max-w-lg bg-white p-8 rounded-3xl shadow-2xl border border-pink-200 transition-all duration-500 ease-in-out transform scale-100">
+        <h1 class="text-4xl font-bold text-rose-700 mb-6 text-center tracking-wide">The Key to My Heart ❤️</h1>
+        
+        <p class="text-lg text-gray-700 mb-6 text-center italic">
+            Before we begin our next adventure, prove your love by solving this secret of the heart:
+        </p>
+
+        <div class="bg-pink-100 p-6 rounded-xl border-l-4 border-rose-500 shadow-inner">
+            <p class="text-2xl font-semibold text-rose-800 text-center">
+                "Who is the most Amazing person in this whole world? What's thier name?✨"
+            </p>
+        </div>
+
+        <div class="my-6">
+            <button 
+                onclick="showHint()"
+                id="hintButton"
+                class="w-full text-center text-sm text-rose-600 font-semibold py-2 rounded-lg border border-rose-300 hover:bg-pink-50 transition duration-150 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50"
+            >
+                Need a Secret Whisper? Click Here.
+            </button>
+            <div id="hintContent" class="hidden mt-3 p-4 bg-yellow-100 rounded-lg border border-yellow-300 text-yellow-800 text-center text-base shadow-lg">
+                <p>Hint: It's their birthday today and they are Ruru's favorite person 🤭</p>
+            </div>
+        </div>
+        <div class="mb-6">
+            <label for="answerInput" class="block text-sm font-medium text-gray-700 mb-2">Answer (Case-Insensitive):</label>
+            <input type="text" id="answerInput" class="w-full px-4 py-3 border border-pink-300 rounded-lg focus:outline-none transition duration-150" placeholder="Type the special name...">
+        </div>
+
+        <button 
+            onclick="checkAnswer()"
+            id="submitButton"
+            class="w-full bg-rose-600 text-white font-semibold py-3 rounded-lg hover:bg-rose-700 transition duration-300 shadow-xl hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-rose-500 focus:ring-opacity-50 transform hover:scale-[1.01]"
+        >
+            Unlock My Love's Treasure 🗝️
+        </button>
+
+        <div id="messageArea" class="mt-6 text-center font-medium">
+            </div>
+    </div>
+
+    <script>
+        // *** IMPORTANT: CHANGE THESE ANSWERS TO THE CORRECT NAME(S) ***
+        // Add all variations (first name, full name, nickname) here.
+        const CORRECT_ANSWERS = ["SHIVANI", "SHIBUU", "SHIVY", "BOO BOO"]; 
+        
+        // *** UPDATED REDIRECT PATH ***
+        const SUCCESS_URL = "./pages/main.html"; 
+
+        // Utility to handle exponential backoff for a real-world scenario (not strictly necessary here but good practice)
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        
+        /**
+         * Toggles the visibility of the hint section.
+         */
+        function showHint() {
+            const hintContent = document.getElementById('hintContent');
+            const hintButton = document.getElementById('hintButton');
+            
+            // Toggle the 'hidden' Tailwind class to show/hide the content
+            hintContent.classList.toggle('hidden');
+
+            // Update button text based on visibility
+            if (hintContent.classList.contains('hidden')) {
+                hintButton.textContent = 'Need a Secret Whisper? Click Here.';
+            } else {
+                hintButton.textContent = 'Hide the Whisper';
+            }
+        }
+
+        /**
+         * Checks the user's input against the correct answer.
+         */
+        async function checkAnswer() {
+            const inputElement = document.getElementById('answerInput');
+            const messageArea = document.getElementById('messageArea');
+            const submitButton = document.getElementById('submitButton');
+            const quizContainer = document.getElementById('quiz-container');
+
+            // Sanitize the user input: trim whitespace and convert to uppercase for case-insensitive check
+            const userInput = inputElement.value.trim().toUpperCase();
+
+            // Disable input and button while processing
+            inputElement.disabled = true;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Verifying the Bond...';
+            
+            // Clear previous messages and show loading state
+            messageArea.innerHTML = '<span class="text-rose-600">Checking the secret of the heart...</span>';
+
+            // Simulate a brief network delay (good for user feedback)
+            await sleep(500);
+
+            // Checks if the user input is included in the array of correct answers
+            if (CORRECT_ANSWERS.includes(userInput)) {
+                // --- SUCCESS PATH (Romanticized) ---
+                
+                // 1. Display success message
+                messageArea.innerHTML = `
+                    <div class="p-4 bg-red-100 border-l-4 border-rose-500 text-rose-700 rounded-md shadow-lg">
+                        <p class="font-bold text-xl">My Heart is Yours! ❤️</p>
+                        <p>You unlocked the gate! Preparing a sweet surprise...</p>
+                    </div>
+                `;
+
+                // 2. Optional visual effect before redirecting
+                quizContainer.classList.add('scale-105', 'opacity-0');
+                document.body.style.backgroundColor = '#fce7f3'; // Very light pink background
+
+                // 3. Perform the actual redirect after a short delay (2 seconds)
+                await sleep(2000);
+                
+                window.location.href = SUCCESS_URL;
+
+
+            } else {
+                // --- FAILURE PATH (Romanticized) ---
+
+                // 1. Display error message
+                messageArea.innerHTML = `
+                    <div class="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 rounded-md shadow-inner">
+                        <p class="font-bold">A Small Misstep!</p>
+                        <p>The gate is still closed. Try to remember the right name, my love!</p>
+                    </div>
+                `;
+                
+                // 2. Re-enable controls and reset button text
+                inputElement.disabled = false;
+                submitButton.disabled = false;
+                submitButton.textContent = 'Unlock My Love\'s Treasure 🗝️';
+
+                // 3. Clear the input and refocus the user
+                inputElement.value = '';
+                inputElement.focus();
+
+                // Add a temporary visual shake/pulse for error
+                quizContainer.classList.add('animate-pulse-once');
+                setTimeout(() => {
+                    quizContainer.classList.remove('animate-pulse-once');
+                }, 1000);
+            }
+        }
+        
+        // --- NEW CODE FOR ENTER KEY FUNCTIONALITY ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputElement = document.getElementById('answerInput');
+            if (inputElement) {
+                // Attach the keyup event listener to the input field
+                inputElement.addEventListener('keyup', (event) => {
+                    // Check if the key pressed is the Enter key
+                    if (event.key === 'Enter') {
+                        // Prevent the default action (e.g., submitting a form, though none exists)
+                        event.preventDefault(); 
+                        // Call the function to check the answer
+                        checkAnswer();
+                    }
+                });
+            }
+        });
+        // ---------------------------------------------
+    </script>
+</body>
+</html>

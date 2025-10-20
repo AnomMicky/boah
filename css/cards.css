@@ -1,0 +1,303 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Quicksand, sans-serif;
+}
+
+/* --- THE GUARANTEED WHITE FLASH FIX --- */
+/* 1. Make the root background dark. Any "flash" will now be a "dark flash". */
+html {
+  font-size: 62.5%;
+  background-color: #262626; /* This is the key! */
+}
+
+/* 2. Make the body fade in smoothly on page load. */
+body {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+/* --- End of Fix --- */
+
+
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #4a2545, #262626);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5rem;
+  padding: 5rem 2rem 10rem 2rem;
+  overflow-x: hidden;
+}
+
+.main-heading {
+  font-size: 5rem;
+  font-weight: 700;
+  color: #DAA520;
+  text-align: center;
+  margin-bottom: 5rem;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* ... All your other styles for .memory-section, .card, etc., remain exactly the same ... */
+
+.memory-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+  width: 100%;
+  max-width: 1200px;
+  opacity: 0;
+  transform: translateY(50px) scale(0.95);
+  transition: opacity 0.8s cubic-bezier(0.5, 0, 0, 1),
+    transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+  pointer-events: none;
+}
+
+.memory-section.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.memory-section:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.card-description {
+  flex: 1;
+  max-width: 40rem;
+  color: #eee;
+  position: relative;
+  min-height: 20rem;
+}
+
+.text-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out;
+}
+
+.text-content-1 {
+  opacity: 1;
+}
+
+.memory-section.change .text-content-1 {
+  opacity: 0;
+}
+
+.memory-section.change .text-content-2 {
+  opacity: 1;
+}
+
+
+.card-description h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #f1ae04;
+  transition: color 0.6s ease-in-out;
+}
+
+.memory-section.change .card-description h2 {
+  color: #c02244;
+}
+
+.card-description p {
+  font-size: 1.8rem;
+  line-height: 1.6;
+}
+
+.card-wrapper {
+  width: 55rem;
+  height: 70rem;
+  display: grid;
+  place-items: center;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.7);
+  position: relative;
+  overflow: hidden;
+  background: #333;
+  padding: 1.5rem;
+}
+
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.8s cubic-bezier(0.82, 0, 0.18, 1);
+}
+
+/* CARD 1 */
+#card1::before {
+  background-image: url('../images/firstPhoto.jpg');
+  transform: translateX(0%);
+}
+#card1::after {
+  background-image: url('../images/penguin.jpg');
+  transform: translateX(100%);
+}
+.memory-section.change #card1::before {
+  transform: translateX(-100%);
+}
+.memory-section.change #card1::after {
+  transform: translateX(0%);
+}
+
+/* CARD 2 */
+#card2::before {
+  background-image: url('../images/MyPrincess.jpg');
+  transform: translateX(0%);
+}
+#card2::after {
+  background-image: url('../images/catty.jpg');
+  transform: translateX(100%);
+}
+.memory-section.change #card2::before {
+  transform: translateX(-100%);
+}
+.memory-section.change #card2::after {
+  transform: translateX(0%);
+}
+
+/* CARD 3 */
+#card3::before {
+  background-image: url('../images/img-20.jpg');
+  transform: translateX(0%);
+}
+#card3::after {
+  background-image: url('../images/img-29.jpg');
+  transform: translateX(100%);
+}
+.memory-section.change #card3::before {
+  transform: translateX(-100%);
+}
+.memory-section.change #card3::after {
+  transform: translateX(0%);
+}
+
+/* CARD 4 */
+#card4::before {
+  background-image: url('../images/img-8.jpg');
+  transform: translateX(0%);
+}
+#card4::after {
+  background-image: url('../images/img-3.jpg');
+  transform: translateX(100%);
+}
+.memory-section.change #card4::before {
+  transform: translateX(-100%);
+}
+.memory-section.change #card4::after {
+  transform: translateX(0%);
+}
+
+
+.color {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem 1.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.color h4 {
+  font-size: 1.4rem;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  margin-right: 1.5rem;
+}
+
+.colors {
+  display: flex;
+  align-items: center;
+}
+
+.color-1,
+.color-2 {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+}
+
+.color-1 {
+  background: #1c477a;
+  margin-right: 1rem;
+  border: 3px solid #fff;
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+.color-2 {
+  background: #c02244;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  opacity: 0.7;
+}
+
+.memory-section.change .color-1 {
+  border-color: rgba(255, 255, 255, 0.7);
+  transform: scale(1);
+  opacity: 0.7;
+}
+
+.memory-section.change .color-2 {
+  border-color: #fff;
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+@media (max-width: 900px) {
+  /* ... your responsive styles ... */
+}
+
+/* --- DIAGONAL WIPE TRANSITION --- */
+/* This style is still used by menu.css, so it must stay. */
+.transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4a2545;
+  z-index: 1000;
+  clip-path: circle(0% at 100% 0);
+  transition: clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+  pointer-events: none; 
+}
+
+.transition-overlay.wipe-active {
+  clip-path: circle(150% at 100% 0);
+  pointer-events: auto;
+}
+
