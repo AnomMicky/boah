@@ -5,23 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Birthday Memories</title>
-    
-    <base href="/boah/"> 
-
-    <link rel="stylesheet" href="css/cards.css" />
+    <link rel="stylesheet" href="../css/cards.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    </head>
+    <!-- The old inline style block has been REMOVED from here -->
+  </head>
   <body>
+    <!-- The transition overlay is still needed for the animation -->
     <div class="transition-overlay"></div>
 
     <div class="container">
       <h1 class="main-heading">Happy Birthday, My Love ❤️</h1>
 
+      <!-- MEMORY SECTION 1 -->
       <div class="memory-section">
         <div class="card-wrapper">
           <div class="card" id="card1">
@@ -52,6 +52,7 @@
         </div>
       </div>
 
+      <!-- MEMORY SECTION 2 -->
       <div class="memory-section">
         <div class="card-wrapper">
           <div class="card" id="card2">
@@ -81,6 +82,7 @@
         </div>
       </div>
 
+      <!-- MEMORY SECTION 3 -->
       <div class="memory-section">
         <div class="card-wrapper">
           <div class="card" id="card3">
@@ -102,7 +104,7 @@
               I love listening to your voice and seeing your beautiful face on the screen makes my heart melt every time 🥹.
             </p>
           </div>
-            <div class="text-content text-content-2">
+           <div class="text-content text-content-2">
             <h2>😝</h2>
             <p>
               How can I ever forget this image gehehehehhehe, You are so so cute and enjoying alot. Seeing this photo makes me feel so so happy des 🤭🥹. 
@@ -111,6 +113,7 @@
         </div>
       </div>
 
+      <!-- MEMORY SECTION 4 -->
       <div class="memory-section">
         <div class="card-wrapper">
           <div class="card" id="card4">
@@ -145,16 +148,7 @@
 
     </div>
 
-    <script src="js/cards.js"></script> 
-    
-    <script>
-        window.addEventListener('pageshow', function (event) {
-            // Check if the page was restored from cache (which happens on back/forward)
-            if (event.persisted) {
-                // Force a full reload to prevent cached, stuck page state
-                window.location.reload();
-            }
-        });
-    </script>
+    <script src="../js/cards.js"></script>
   </body>
 </html>
+

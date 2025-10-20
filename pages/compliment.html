@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A Little Surprise For You</title>
-    
-    <base href="/boah/">
-
-    <link rel="stylesheet" href="css/compliment.css" />
+    <link rel="stylesheet" href="../css/compliment.css" />
   </head>
   <body>
     <div class="container center">
@@ -36,6 +33,7 @@
       </div>
 
       <div class="boxes center">
+        <!-- EXISTING BOXES 1-7 -->
         <div class="box box-1 active">
           <div class="top-side">Beautiful</div>
           <div class="bottom-side">Beautiful</div>
@@ -94,17 +92,6 @@
         </div>
       </div>
     </div>
-    
-    <script src="js/compliment.js"></script>
-    
-    <script>
-        window.addEventListener('pageshow', function (event) {
-            // Check if the page was restored from cache (which happens on back/forward)
-            if (event.persisted) {
-                // Force a full reload to prevent cached, stuck page state
-                window.location.reload();
-            }
-        });
-    </script>
+    <script src="../js/compliment.js"></script>
   </body>
 </html>

@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy 21st Birthday Cake</title>
+    <!-- Load custom stylesheet -->
+    <link rel="stylesheet" href="../css/cake.css">
     
-    <base href="/boah/"> 
-    
-    <link rel="stylesheet" href="css/cake.css">
-    
+    <!-- Load jQuery and jQuery UI for drag and drop -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 </head>
@@ -16,8 +15,10 @@
 
 <div class='birthday'>
     <div class='birthday_inner'>
+        <!-- MODAL (Initially hidden) -->
         <div class='birthday_inner__modal'>
             <div class='modal_image'>
+                <!-- Image source will be updated by JS -->
                 <img src='/'>
             </div>
             <div class='modal_content'>
@@ -27,13 +28,15 @@
             </div>
         </div>
 
+        <!-- STAGE 1: Introduction -->
         <div class='birthday_inner__stage stage1'>
             <div class='intro_cake'>
-                <img class='intro' src='images/cake.png'> 
+                <img class='intro' src='../images/cake.png'>
             </div>
             <button class='start'>Let’s make a cake</button>
         </div>
 
+        <!-- STAGE 2: Mixing -->
         <div class='birthday_inner__stage stage2'>
             <h1>Let’s get mixing</h1>
             <h2>OK, so let's start by mixing all of our ingredients together in a big mixing bowl. Click the mix button below until the mixture is nice and smooth.</h2>
@@ -48,6 +51,7 @@
             <button class='mixer'>Click here to mix</button>
         </div>
 
+        <!-- STAGE 3: Baking -->
         <div class='birthday_inner__stage stage3'>
             <h1>Let’s bake our base</h1>
             <h2>Alright, let’s get this mixture in the oven. Go ahead and drag the cake mix into the digital oven. Then put your feet up while it bakes.</h2>
@@ -59,11 +63,13 @@
             </div>
         </div>
 
+        <!-- STAGE 4: Decorating -->
         <div class='birthday_inner__stage stage4'>
             <h1>Let’s make the cake</h1>
             <h2>Build your cake in any order you want. Click an ingredient to add it to your cake. You can add more than one item e.g 2 vanilla sponges but only 5 bases and 6 fillings. Hit the button at the bottom to finish your cake and add your candles. Make sure you leave some icing for the top of your cake!</h2>
             
             <div class='svg'>
+                <!-- Replaced the complex SVG with a simple, styled h2 element for custom text -->
                 <h2 class='final-message' style="display: none; margin-bottom: 20px; font-size: 38px; color: #e77572; line-height: 1.2;">Happy Birthday My love 💛</h2>
             </div>
             
@@ -113,6 +119,7 @@
             </div>
             
             <div class='cakemake'>
+                <!-- The cake starts with a base layer -->
                 <div class='base'></div>
             </div>
             
@@ -123,16 +130,7 @@
     </div>
 </div>
 
-<script src="js/cake.js"></script>
-
-<script>
-    window.addEventListener('pageshow', function (event) {
-        // Check if the page was restored from cache (which happens on back/forward)
-        if (event.persisted) {
-            // Force a full reload to prevent cached, stuck page state
-            window.location.reload();
-        }
-    });
-</script>
+<!-- Load custom script -->
+<script src="../js/cake.js"></script>
 </body>
 </html>
