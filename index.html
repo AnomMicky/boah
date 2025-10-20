@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Secret Gate of Hearts</title>
+    <base href="/MyActualRepo/"> 
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600;700&display=swap');
@@ -74,8 +75,8 @@
         // Add all variations (first name, full name, nickname) here.
         const CORRECT_ANSWERS = ["SHIVANI", "SHIBUU", "SHIVY", "BOO BOO"]; 
         
-        // *** UPDATED REDIRECT PATH ***
-        const SUCCESS_URL = "./pages/main.html"; 
+        // *** UPDATED REDIRECT PATH (Relative to the base URL) ***
+        const SUCCESS_URL = "pages/main.html"; 
 
         // Utility to handle exponential backoff for a real-world scenario (not strictly necessary here but good practice)
         const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -140,6 +141,8 @@
                 // 3. Perform the actual redirect after a short delay (2 seconds)
                 await sleep(2000);
                 
+                // FIX: Use replaceState() to prevent this page from being in the browser history
+                history.replaceState(null, null, location.href); 
                 window.location.href = SUCCESS_URL;
 
 
